@@ -1,0 +1,21 @@
+<div class="invalid-feedback d-block" *ngIf="verificaErro() === required">
+    <span>O campo {{ label }} é de preenchimento obrigatório.</span>
+</div>
+
+<div class="invalid-feedback d-block" *ngIf="minlength">
+    <span>Mínimo {{ this.control.errors.minlength.requiredLength }} caracteres.</span>
+</div>
+
+<div class="invalid-feedback d-block" *ngIf="maxlength">
+    <span>Máximo {{ this.control.errors.maxlength.requiredLength }} caracteres.</span>
+</div>
+
+<div class="invalid-feedback d-block" *ngIf="email">
+    <span>Não é um endereço de {{ label }} válido.</span>
+</div>
+
+<div class="invalid-feedback d-block" *ngIf="nomeInvalido">
+    <span>{{ label }} não é válido.</span>
+</div>
+
+

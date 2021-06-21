@@ -1,0 +1,66 @@
+<block-ui>
+    <div class="animated fadeIn">
+        <div class="card">
+            <div class="card-header">
+                <i class="icon-note"></i>{{ this.currentAction }} Cliente
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formCadastro">
+                    <div class="col-12">
+                        <div class="row">
+                            <fieldset class="col-md-8 form-group">
+                                <label for="nome">{{ dsLabelForm.nome }} <span class="text-danger"
+                                        *ngIf="formCadastro.get('nome').errors?.required">*</span></label>
+                                <input type="text" class="form-control text-uppercase" id="nome" formControlName="nome"
+                                    [placeholder]="dsLabelForm.nome" autocomplete="off">
+                                <app-sgc-message-form [label]="dsLabelForm.nome" [control]="formCadastro.get('nome')"
+                                    [submittingForm]="submittingForm" [validaNome]="true">
+                                </app-sgc-message-form>
+                                <div class="invalid-feedback d-block" *ngIf="nomeClienteInvalido">
+                                    <span>{{ dsLabelForm.nome }} inválido.</span>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="col-md-4 form-group">
+                                <label for="cpf">{{ dsLabelForm.cpf }} <span class="text-danger"
+                                    *ngIf="formCadastro.get('cpf').errors?.required">*</span></label>
+                                <input type="text" class="form-control" id="cpf" formControlName="cpf"
+                                    placeholder="000.000.000-00" mask="000.000.000-00" autocomplete="off">
+                                <app-sgc-message-form [label]="dsLabelForm.cpf" [control]="formCadastro.get('cpf')"
+                                    [submittingForm]="submittingForm">
+                                </app-sgc-message-form>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <app-sgc-endereco
+                            [submittingForm]="submittingForm"
+                            (setValueForm)="setValueEndereco($event)"
+                        ></app-sgc-endereco>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="col-6">
+                            <app-sgc-telefone
+                                [submittingForm]="submittingForm"
+                                (getTelefone)="setValueTelefone($event)"
+                            ></app-sgc-telefone>
+                        </div>
+
+                        <div class="col-6">
+                            <app-sgc-email (getEmail)="setValueEmail($event)"
+                                [submittingForm]="submittingForm"></app-sgc-email>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <app-sgc-button-actions-cadastro (buttonBackForm)="voltar()" (buttonCleanForm)="limpaForm()"
+                    (buttonSubmittedForm)="submitForm()" [currentAction]="this.currentAction"></app-sgc-button-actions-cadastro>
+            </div>
+        </div>
+    </div>
+
+    <p-toast position="bottom-center"></p-toast>
+</block-ui>

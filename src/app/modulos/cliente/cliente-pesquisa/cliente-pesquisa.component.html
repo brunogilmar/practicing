@@ -1,0 +1,73 @@
+<block-ui>
+    <div class="animated fadeIn">
+        <div class="card">
+            <div class="card-header">
+                <i class="icon-note"></i>Pesquisa Cliente
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formFiltro">
+                    <div class="row">
+                        <fieldset class="col-md-8 form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control" formControlName="nome" id="nome"
+                                placeholder="Nome do Cliente" autocomplete="off">
+                        </fieldset>
+                        <fieldset class="col-md-4 form-group">
+                            <label for="nome">CPF</label>
+                            <input type="text" class="form-control" formControlName="cpf" id="cpf"
+                                placeholder="000.000.000-00" mask="000.000.000-00" autocomplete="off">
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <app-sgc-button-actions-pesquisa [buttonNewCreate]="resourcePacht" (buttonCleanForm)="limpaForm()"
+                    (buttonSubmittedForm)="pesquisa()"></app-sgc-button-actions-pesquisa>
+            </div>
+        </div>
+
+        <p-table dataKey="id" [value]="resources" [responsive]="true" [autoLayout]="true" [lazy]="true"
+            [paginator]="true" [rows]="ITENS_POR_PAGINA" [totalRecords]="totalRegistro" [showCurrentPageReport]="true"
+            currentPageReportTemplate="Mostrando de {first} a {last} de {totalRecords} Registros"
+            [rowsPerPageOptions]="[10,25,50]" (onSort)="onSortList($event)" (onPage)="changePage($event)"
+            [(selection)]="selectedVinculos"
+            styleClass="p-datatable-lg p-datatable-gridlines p-datatable-responsive-demo mb-4" #tabela
+            *ngIf="totalRegistro > 0">
+
+            <ng-template pTemplate="caption">
+                Resultado da Pesquisa
+            </ng-template>
+
+            <ng-template pTemplate="header" let-header>
+                <tr>
+                    <th pSortableColumn="nome">
+                        Nome<p-sortIcon field="nome"></p-sortIcon>
+                    </th>
+                    <th>CPF</th>
+                    <th>Cidade/UF</th>
+                    <th>Situação</th>
+                    <th>Usuário</th>
+                    <th>Cadastrado em</th>
+                    <th style="width: 144px;">Ações</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-body>
+                <tr [pSelectableRow]="body">
+                    <td>{{ body.nome }}</td>
+                    <td>{{ body.cpf | mascaraCpf }}</td>
+                    <td>{{ body.endereco.localidade }}/{{ body.endereco.uf }}</td>
+                    <td>{{ body.ativo | mascaraAtivoInativo }}</td>
+                    <td>{{ body.usuario }}</td>
+                    <td>{{ body.criadoEm | date:'dd/MM/yyyy' }}</td>
+                    <td>
+                        <app-sgc-button-actions-table (buttonToViewForm)="visualizar(body.id)" (buttonChangeForm)="alterar(body.id)"
+                            (buttonDeleteForm)="deletar(body)"></app-sgc-button-actions-table>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+    <p-toast position="bottom-center"></p-toast>
+</block-ui>

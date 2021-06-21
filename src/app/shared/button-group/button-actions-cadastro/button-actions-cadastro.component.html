@@ -1,0 +1,21 @@
+<div class="d-flex">
+    <div class="mr-auto">
+        <button type="button" class="btn btn-secondary" (click)="voltaForm()">
+            <i class="fa fa-angle-double-left mr-2"></i>Voltar
+        </button>
+    </div>
+
+    <div *ngIf="currentAction !== acaoPageVisualizar">
+        <div *ngIf="currentAction === acaoPageCadastrar; else elseBlock">
+            <button type="button" class="btn btn-primary" *ngIf="verificaPermissao('CADASTRAR_CLIENTE')" (click)="enviaForm()">
+                <i class="fa fa-floppy-o mr-2"></i>Salvar Registro
+            </button>
+        </div>
+
+        <ng-template #elseBlock>
+            <button type="button" class="btn btn-primary" *ngIf="verificaPermissao('ALTERAR_CLIENTE')" (click)="enviaForm()">
+                <i class="fa fa-floppy-o mr-2"></i>Alterar Registro
+            </button>
+        </ng-template>
+    </div>
+</div>

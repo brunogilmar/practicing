@@ -1,0 +1,79 @@
+<div class="card">
+    <div class="card-header" (click)="isCollapsed = !isCollapsed" style="cursor:pointer;">
+        <i class="fa fa-angle-double-right"></i>Telefone
+    </div>
+    <div class="card-body" [collapse]="isCollapsed">
+        <form [formGroup]="formTelefone" *ngIf="currentAction !== acaoPageVisualizar">
+            <div class="row">
+                <fieldset class="col-md-4 form-group">
+                    <label for="tipo">{{ dsLabelForm.tipo }} <span class="text-danger"
+                        *ngIf="formTelefone.get('tipo').errors?.required">*</span></label>
+                    <ng-select [items]="tipoTelefoneList" bindLabel="descricao" [multiple]="false"
+                        notFoundText="Nenhum registro encontrado" formControlName="tipo"
+                        placeholder="Selecione" (change)="carregaMascara()">
+                    </ng-select>
+                    <app-sgc-message-form [label]="dsLabelForm.tipo" [control]="formTelefone.get('tipo')"
+                        [submittingForm]="submittingTelefone">
+                    </app-sgc-message-form>
+                </fieldset>
+
+                <fieldset class="col-md-8 form-group">
+                    <label for="telefone">{{ dsLabelForm.telefone }} <span class="text-danger"
+                        *ngIf="formTelefone.get('telefone').errors?.required">*</span></label>
+                    <input type="text" class="form-control" formControlName="telefone" id="telefone"
+                        [placeholder]="mascaraTelefone" [mask]="mascaraTelefone" autocomplete="off">
+                    <app-sgc-message-form [label]="dsLabelForm.telefone" [control]="formTelefone.get('telefone')"
+                        [submittingForm]="submittingTelefone">
+                    </app-sgc-message-form>
+                    <div class="invalid-feedback d-block" *ngIf="submittingForm && telefoneList.length === 0">
+                        <span>Necessário informar pelo menos um {{ dsLabelForm.telefone }}.</span>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="row">
+                <fieldset class="col-md-12 form-group">
+                    <div class="d-flex">
+                        <div class="ml-auto">
+                            <button type="submit" class="btn btn-primary" (click)="cadastra()">
+                                Adicionar Telefone
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+
+        <p-table dataKey="id" [value]="telefoneList" [responsive]="true" [autoLayout]="true"
+            [paginator]="false" [totalRecords]="totalRegistro" [(selection)]="selectedTelefone"
+            styleClass="p-datatable-lg p-datatable-gridlines p-datatable-responsive-demo mb-4" #tabela
+            *ngIf="telefoneList.length > 0">
+
+            <ng-template pTemplate="caption">
+                Lista de Telefone
+            </ng-template>
+
+            <ng-template pTemplate="header" let-header>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Número</th>
+                    <th style="width: 144px;" *ngIf="currentAction !== acaoPageVisualizar">Ações</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-telefone>
+                <tr>
+                    <td>{{ telefone.tipo.descricao }}</td>
+                    <td>{{ telefone.telefone | mascaraTelefone }}</td>
+                    <td *ngIf="currentAction !== acaoPageVisualizar">
+                        <button pButton pRipple type="button" icon="pi pi-trash"
+                            class="p-button-rounded p-button-danger" pTooltip="Deletar" tooltipPosition="top"
+                            (click)="delete(telefone)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

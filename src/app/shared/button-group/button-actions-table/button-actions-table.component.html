@@ -1,0 +1,6 @@
+<button pButton pRipple type="button" icon="pi pi-eye" class="p-button-rounded p-button-success"
+    pTooltip="Visualizar" tooltipPosition="top" *ngIf="verificaPermissao('VISUALIZAR_CLIENTE')" (click)="visualizarRegistro()"></button>
+<button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-warning"
+    pTooltip="Editar" tooltipPosition="top" *ngIf="verificaPermissao('ALTERAR_CLIENTE')" (click)="alterarRegistro()"></button>
+<button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger"
+    pTooltip="Excluir" tooltipPosition="top" *ngIf="verificaPermissao('DELETAR_CLIENTE')" (click)="deletarRegistro()"></button>

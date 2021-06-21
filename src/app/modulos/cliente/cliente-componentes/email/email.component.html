@@ -1,0 +1,65 @@
+<div class="card">
+    <div class="card-header" (click)="isCollapsed = !isCollapsed" style="cursor:pointer;">
+        <i class="fa fa-angle-double-right"></i>E-mail
+    </div>
+    <div class="card-body" [collapse]="isCollapsed">
+        <form [formGroup]="formEmail" *ngIf="currentAction !== acaoPageVisualizar">
+            <div class="row">
+                <fieldset class="col-md-12 form-group">
+                    <label for="email">{{ dsLabelForm.email }} <span class="text-danger"
+                        *ngIf="formEmail.get('email').errors?.required">*</span></label>
+                    <input type="email" class="form-control text-lowercase" formControlName="email" id="email"
+                        [placeholder]="dsLabelForm.email" autocomplete="off">
+                    <app-sgc-message-form [label]="dsLabelForm.email" [control]="formEmail.get('email')"
+                        [submittingForm]="submittingEmail">
+                    </app-sgc-message-form>
+                    <div class="invalid-feedback d-block" *ngIf="submittingForm && emailList.length === 0">
+                        <span>Necessário informar pelo menos um {{ dsLabelForm.email }} válido.</span>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="row">
+                <fieldset class="col-md-12 form-group">
+                    <div class="d-flex">
+                        <div class="ml-auto">
+                            <button type="submit" class="btn btn-primary" (click)="cadastra()">
+                                Adicionar E-mail
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+
+        <p-table dataKey="id" [value]="emailList" [responsive]="true" [autoLayout]="true"
+            [paginator]="false" [totalRecords]="totalRegistro" [(selection)]="selectedEmail"
+            styleClass="p-datatable-lg p-datatable-gridlines p-datatable-responsive-demo mb-4" #tabela
+            *ngIf="emailList.length > 0">
+
+            <ng-template pTemplate="caption">
+                Lista de E-mail
+            </ng-template>
+
+            <ng-template pTemplate="header" let-header>
+                <tr>
+                    <th>E-mail</th>
+                    <th style="width: 144px;" *ngIf="currentAction !== acaoPageVisualizar">Ações</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-email>
+                <tr [pSelectableRow]="body">
+                    <td>{{ email.email }}</td>
+                    <td *ngIf="currentAction !== acaoPageVisualizar">
+                        <button pButton pRipple type="button" icon="pi pi-trash"
+                            class="p-button-rounded p-button-danger" pTooltip="Deletar" tooltipPosition="top"
+                            (click)="delete(email)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

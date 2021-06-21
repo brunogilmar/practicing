@@ -1,0 +1,155 @@
+// Here you can add other styles
+body {
+  background-color: #f8f8f8,
+}
+
+a {
+  color: #071d41;
+}
+
+a:hover {
+  color: #F3D712;
+}
+
+a.nome-sistema {
+  text-decoration: none;
+  color: #fff;
+  margin: 0 15px;
+  font-size: 30px;
+  height: 50px;
+  font-weight: 400;
+}
+
+.app-header.navbar {
+  background-color: #071d41;
+  border-bottom: 3px solid #F3D712;
+}
+
+.navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+.navbar-nav .active>.nav-link,
+.navbar-nav .active>.nav-link:focus,
+.navbar-nav .active>.nav-link:hover,
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.active:focus,
+.navbar-nav .nav-link.active:hover,
+.navbar-nav .nav-link.open,
+.navbar-nav .nav-link.open:focus,
+.navbar-nav .nav-link.open:hover,
+.navbar-nav .open>.nav-link,
+.navbar-nav .open>.nav-link:focus,
+.navbar-nav .open>.nav-link:hover,
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: #F3D712;
+}
+
+/* icon menu */
+.sidebar .nav-link .nav-icon {
+  color: #ffffff;
+}
+
+.sidebar .nav-link:hover .nav-icon {
+  color: #F3D712;
+}
+
+.sidebar .nav-link.active .nav-icon {
+  color: #F3D712;
+}
+
+.sidebar-minimized .sidebar .nav-dropdown-items .nav-item > .nav-link:hover .nav-icon {
+  color: #F3D712;
+}
+
+/* menu */
+.sidebar {
+  background-color: #04132a
+}
+
+.sidebar .nav-link:hover {
+  background-color: #071d41;
+}
+
+.sidebar .nav-link.active {
+  background-color: #071d41;
+}
+
+/* menu minimizado */
+.sidebar-minimized .sidebar .nav-item.open > .nav-link {
+  background-color: #F3D712;
+}
+
+.sidebar-minimized .sidebar .nav-item:hover > .nav-link {
+  background-color: #F3D712;
+}
+
+.sidebar-minimized .sidebar .nav-dropdown-items .nav-item .nav-link {
+  background-color: #071d41;
+}
+
+.sidebar-minimized .sidebar .nav-dropdown-items .nav-item > .nav-link:hover {
+  background-color: #04132a;
+}
+
+.sidebar-minimized .sidebar .nav-dropdown-items .nav-item > .nav-link.active {
+  background-color: #04132a;
+}
+
+/* footer do menu minimizado */
+.sidebar .sidebar-minimizer {
+  background-color: #F3D712
+}
+
+.sidebar .sidebar-minimizer:hover {
+  background-color: #F3D712
+}
+
+.sidebar-minimized .sidebar .sidebar-minimizer {
+  background-color: #F3D712
+}
+
+.breadcrumb {
+  box-shadow: #e4e7ea 0px 4px 2px;
+}
+
+.card {
+  box-shadow: #e4e7ea 5px 5px 2px;
+}
+
+.form-control {
+    border-color: #ccc;
+}
+
+.input-group-text {
+    border-color: #ccc;
+}
+
+/* footer */
+.app-footer {
+  background-color: #F3D712;
+  border: 0px;
+}
+
+
+/* TABLE */
+.p-component, .p-link, .p-inputtext {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #23282c;
+}
+
+.pi {
+    font-size: 0.875rem;
+}
+
+.p-button.p-button-icon-only.p-button-rounded {
+    height: 1.857rem;
+}
+
+.p-button.p-button-icon-only {
+    width: 1.857rem;
+}

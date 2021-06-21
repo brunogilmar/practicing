@@ -1,0 +1,74 @@
+<div class="card">
+    <div class="card-header" (click)="isCollapsed = !isCollapsed" style="cursor:pointer;">
+        <i class="fa fa-angle-double-right"></i>Endereço
+    </div>
+    <div class="card-body" [collapse]="isCollapsed">
+        <form [formGroup]="formEndereco">
+            <div class="row">
+                <fieldset class="col-sm-3 form-group">
+                    <label for="cep">{{ dsLabelForm.cep }} <span class="text-danger"
+                        *ngIf="formEndereco.get('cep').errors?.required">*</span></label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" formControlName="cep" id="cep"
+                            placeholder="00.000-000" mask="00.000-000" autocomplete="off" (change)="setValorInput()" [readonly]="disableCampos">
+                        <div class="input-group-append" *ngIf="!disableCampos">
+                            <button class="btn btn-primary" (click)="getCep()" type="button">
+                                <i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                    <app-sgc-message-form [label]="dsLabelForm.cep" [control]="formEndereco.get('cep')"
+                        [submittingForm]="submittingForm || submittingCep">
+                    </app-sgc-message-form>
+                </fieldset>
+
+                <fieldset class="col-sm-6 form-group">
+                    <label for="logradouro">{{ dsLabelForm.logradouro }} <span class="text-danger"
+                            *ngIf="formEndereco.get('logradouro').errors?.required">*</span></label>
+                    <input type="text" class="form-control text-uppercase" formControlName="logradouro" id="logradouro" [readonly]="disableCampos"
+                        [placeholder]="dsLabelForm.logradouro" autocomplete="off" (change)="setValorInput()">
+                    <app-sgc-message-form [label]="dsLabelForm.logradouro" [control]="formEndereco.get('logradouro')"
+                        [submittingForm]="submittingForm">
+                    </app-sgc-message-form>
+                </fieldset>
+
+                <fieldset class="col-sm-3 form-group">
+                    <label for="complemento">{{ dsLabelForm.complemento }}</label>
+                    <input type="text" class="form-control text-uppercase" formControlName="complemento" id="complemento" [readonly]="disableCampos"
+                        [placeholder]="dsLabelForm.complemento" autocomplete="off" (change)="setValorInput()">
+                </fieldset>
+            </div>
+
+            <div class="row">
+                <fieldset class="col-sm-6 form-group">
+                    <label for="bairro">{{ dsLabelForm.bairro }} <span class="text-danger"
+                            *ngIf="formEndereco.get('bairro').errors?.required">*</span></label>
+                    <input type="text" class="form-control text-uppercase" formControlName="bairro" id="bairro" [readonly]="disableCampos"
+                        [placeholder]="dsLabelForm.bairro" autocomplete="off" (change)="setValorInput()">
+                    <app-sgc-message-form [label]="dsLabelForm.bairro" [control]="formEndereco.get('bairro')"
+                        [submittingForm]="submittingForm">
+                    </app-sgc-message-form>
+                </fieldset>
+
+                <fieldset class="col-md-4 form-group">
+                    <label for="uf">{{ dsLabelForm.localidade }} <span class="text-danger"
+                            *ngIf="formEndereco.get('localidade').errors?.required">*</span></label>
+                    <input type="text" class="form-control text-uppercase" formControlName="localidade" id="localidade" [readonly]="disableCampos"
+                        [placeholder]="dsLabelForm.localidade" autocomplete="off" (change)="setValorInput()">
+                    <app-sgc-message-form [label]="dsLabelForm.localidade" [control]="formEndereco.get('localidade')"
+                        [submittingForm]="submittingForm">
+                    </app-sgc-message-form>
+                </fieldset>
+
+                <fieldset class="col-md-2 form-group">
+                    <label for="uf">{{ dsLabelForm.uf }} <span class="text-danger"
+                        *ngIf="formEndereco.get('uf').errors?.required">*</span></label>
+                    <input type="text" class="form-control text-uppercase" formControlName="uf" id="uf" [readonly]="disableCampos"
+                        [placeholder]="dsLabelForm.uf" autocomplete="off" (change)="setValorInput()">
+                    <app-sgc-message-form [label]="dsLabelForm.uf" [control]="formEndereco.get('uf')"
+                        [submittingForm]="submittingForm">
+                    </app-sgc-message-form>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</div>

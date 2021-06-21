@@ -1,0 +1,61 @@
+<div class="app-body">
+    <main class="main d-flex align-items-center">
+        <div class="container">
+            <block-ui>
+            <div class="row">
+                <div class="col-lg-8 col-md-6 align-self-center">
+                    <div class="card-body text-center">
+                        <h1 class="text-uppercase">{{ environment.api.name }}</h1>
+                        <h2>{{ environment.api.description }}</h2>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <form [formGroup]="loginForm" (submit)="logar()">
+                                <h1>Login</h1>
+                                <p class="text-muted">Informe seus dados para acessar</p>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="icon-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Usuário" formControlName="email"
+                                        maxlength="100"
+                                        [ngClass]="{ 'is-invalid': submittingForm && loginForm.controls.email.invalid }">
+
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="icon-lock"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" placeholder="Senha" formControlName="senha"
+                                        [ngClass]="{ 'is-invalid': submittingForm && loginForm.controls.senha.invalid }">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-primary px-4">Entrar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </block-ui>
+        </div>
+    </main>
+</div>
+
+<p-toast position="bottom-center"></p-toast>
+
+<app-footer>
+    <div class="mr-auto">
+        <span class="sistema"> <span class="text-uppercase">{{ environment.api.name }}</span> - {{ environment.api.description }}</span>
+        | <span class="versao">{{ environment.api.version }} - Atualizado em {{ environment.api.dataUpdate }} às {{ environment.api.hourUpdate }}</span>
+    </div>
+
+    <div class="ml-auto">
+        <span class="author">Desenvolvido por: <strong>{{ environment.api.author }}</strong></span>
+    </div>
+</app-footer>

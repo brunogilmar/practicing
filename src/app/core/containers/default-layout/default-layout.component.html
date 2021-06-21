@@ -1,0 +1,26 @@
+<div class="app-body">
+    <main class="main">
+        <cui-breadcrumb>
+            <li class="breadcrumb-menu d-md-down-none">
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                    <a class="btn" (click)="fazerLogout()"><i class="fa fa-lock"></i> Logout</a>
+                </div>
+            </li>
+        </cui-breadcrumb>
+
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div><!-- /.container-fluid -->
+    </main>
+</div>
+
+<app-footer>
+    <div class="mr-auto">
+        <span class="sistema"><span class="text-uppercase">{{ environment.api.name }}</span> - {{ environment.api.description }}</span>
+        <span class="versao">{{ environment.api.version }} - Atualizado em {{ environment.api.dataUpdate }} às {{ environment.api.hourUpdate }}</span>
+    </div>
+
+    <div class="ml-auto">
+        <span class="author">Desenvolvido por: <strong>{{ environment.api.author }}</strong></span>
+    </div>
+</app-footer>

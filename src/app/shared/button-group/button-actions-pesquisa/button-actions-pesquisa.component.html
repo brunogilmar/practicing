@@ -1,0 +1,17 @@
+<div class="d-flex">
+    <div class="mr-auto">
+        <button type="button" class="btn btn-secondary" *ngIf="verificaPermissao('CADASTRAR_CLIENTE')" (click)="newCreate()">
+            <i class="fa fa-plus-circle mr-2"></i>Novo Cadastro
+        </button>
+    </div>
+    <div class="pr-2">
+        <button type="button" class="btn btn-secondary" (click)="cleanForm()">
+            <i class="fa fa-eraser mr-2"></i>Limpar
+        </button>
+    </div>
+    <div class="">
+        <button type="button" class="btn btn-primary" *ngIf="verificaPermissao('PESQUISAR_CLIENTE')" (click)="submittedForm()">
+            <i class="fa fa-search mr-2"></i>Pesquisar
+        </button>
+    </div>
+</div>
